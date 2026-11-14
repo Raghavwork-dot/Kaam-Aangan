@@ -1,4 +1,4 @@
-:root{--green:#1E4A38;--green2:#2C6650;--cream:#F6EFDF;--paper:#FFFDF8;--ink:#1B2B23;--muted:#66736B;--line:#E2D8BF;--gold:#B5791A;--red:#A8321F}
+:root{--green:#17543E;--green2:#1F6B50;--cream:#F8F3E6;--paper:#FFFFFF;--ink:#16241E;--muted:#5E6B64;--line:#E6DCC3;--gold:#C28F2C;--coral:#8C3F22;--red:#B3331F}
 *{box-sizing:border-box}html{scroll-behavior:smooth}
 body{margin:0;font-family:Mukta,system-ui,sans-serif;background:var(--cream);color:var(--ink);font-size:17px;line-height:1.55}
 h1,h2,h3{font-family:Fraunces,Georgia,serif;line-height:1.15;margin:0 0 .5em}
@@ -43,3 +43,16 @@ textarea{min-height:90px}
 #toast{position:fixed;left:50%;bottom:1.2rem;transform:translateX(-50%);background:var(--ink);color:#fff;padding:.7rem 1.1rem;border-radius:9px;opacity:0;pointer-events:none;transition:opacity .2s;z-index:20;max-width:90vw}
 #toast.show{opacity:1}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+
+/* professional refresh */
+.top{border-top:4px solid var(--gold)}
+.hero{background:linear-gradient(135deg,#17543E 0%,#1F6B50 100%);border-bottom:4px solid var(--gold)}
+.hero h1{max-width:20ch}
+.search{border-top:0;box-shadow:0 10px 28px rgba(23,84,62,.14)}
+.btn.alt{background:var(--gold);color:#fff}.btn.alt:hover{background:#A87820}
+.cat{display:flex;flex-direction:column;align-items:center;gap:.7rem;background:#fff;border:1px solid var(--line);transition:border-color .15s,box-shadow .15s}
+.cat:hover{border-color:var(--green);box-shadow:0 6px 16px rgba(23,84,62,.10)}
+.cat .ic{width:64px;height:64px;border-radius:50%;display:grid;place-items:center}
+.cat svg{width:30px;height:30px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.c0 .ic{background:#F3E6C4;color:#7A5A12}.c1 .ic{background:#DCEBE3;color:#17543E}.c2 .ic{background:#F0DDD3;color:#8C3F22}.c3 .ic{background:#DDE6EE;color:#2F5677}.c4 .ic{background:#EBDDE5;color:#7D3A5B}
+.foot{background:#0F3A2B;color:#E6EFEA;border:0}.foot a{color:#E7C778}
