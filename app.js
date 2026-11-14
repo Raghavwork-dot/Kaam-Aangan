@@ -2,7 +2,9 @@ const sb = supabase.createClient(CFG.SUPABASE_URL, CFG.SUPABASE_ANON_KEY);
 const $ = s => document.querySelector(s), app = $('#app');
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const AV = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 60'%3E%3Crect width='60' height='60' fill='%23E2D8BF'/%3E%3Ccircle cx='30' cy='23' r='11' fill='%23fffdf8'/%3E%3Crect x='11' y='38' width='38' height='22' rx='11' fill='%23fffdf8'/%3E%3C/svg%3E";
-const ICON = {Sculptor:'🗿',Tailor:'🧵',Carpenter:'🪚',Artisan:'🏺','Beauty and Care':'💄'};
+const P = {Sculptor:'<path d="M14 4l6 6-9 9-5 1 1-5z"/><path d="M12 6l6 6"/>',Tailor:'<circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M8.6 7.6L20 18M8.6 16.4L20 6"/>',Carpenter:'<path d="M14 5l5 5-3 3-5-5z"/><path d="M13 11L4 20"/>',Artisan:'<path d="M9 3h6M10 3v3c-4 2-5 5-5 8a7 7 0 0014 0c0-3-1-6-5-8V3"/>','Beauty and Care':'<path d="M12 3l2.2 5.8L20 11l-5.8 2.2L12 19l-2.2-5.8L4 11l5.8-2.2z"/>'};
+const GEN = '<rect x="4" y="4" width="7" height="7" rx="1"/><rect x="13" y="4" width="7" height="7" rx="1"/><rect x="4" y="13" width="7" height="7" rx="1"/><rect x="13" y="13" width="7" height="7" rx="1"/>';
+const icon = n => `<svg viewBox="0 0 24 24" aria-hidden="true">${P[n] || GEN}</svg>`;
 let me = null, cats = [];
 const tops = () => cats.filter(c => !c.parent_id);
 const subs = id => cats.filter(c => c.parent_id === id);
@@ -55,7 +57,7 @@ function wireSearch() {
   $('#sc').onchange = e => { $('#ss').innerHTML = opts(subs(e.target.value), '', 'Any'); };
   $('#sf').onsubmit = e => { e.preventDefault(); const p = new URLSearchParams({ cat: $('#sc').value, sub: $('#ss').value, city: $('#sci').value, loc: $('#sl').value }); go('#/results?' + p); };
 }
-const catTiles = () => `<div class="cats">${tops().map(c => `<a class="cat" href="#/${me ? 'dash' : 'signup-customer'}"><span aria-hidden="true">${ICON[c.name] || '🛠️'}</span>${esc(c.name)}</a>`).join('')}</div>`;
+const catTiles = () => `<div class="cats">${tops().map((c, i) => `<a class="cat c${i % 5}" href="#/${me ? 'dash' : 'signup-customer'}"><span class="ic">${icon(c.name)}</span>${esc(c.name)}</a>`).join('')}</div>`;
 const steps = () => `<div class="two"><div class="box"><h3>For customers</h3><ol><li>Sign up or log in.</li><li>Select a service.</li><li>Choose your location.</li><li>Explore available service providers.</li><li>Pay ₹29 to get contact details or request a connection.</li></ol></div>
 <div class="box"><h3>For service providers</h3><ol><li>Register as a service provider.</li><li>Select your profession.</li><li>Create your profile.</li><li>Upload photographs of your work.</li><li>Select your service locations.</li><li>Start receiving customer enquiries.</li></ol></div></div>`;
 routes[''] = async () => {
